@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD32B18A252E1846008E8D29 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD32B189252E1846008E8D29 /* View+Extensions.swift */; };
+		AD32B18E252E4406008E8D29 /* SmallWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD32B18D252E4406008E8D29 /* SmallWidgetView.swift */; };
 		ADD5D6392527A3D50076CE58 /* KahootApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD5D6382527A3D50076CE58 /* KahootApp.swift */; };
 		ADD5D63B2527A3D50076CE58 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD5D63A2527A3D50076CE58 /* ContentView.swift */; };
 		ADD5D63D2527A3D60076CE58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ADD5D63C2527A3D60076CE58 /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 		ADD5D65A2527A41A0076CE58 /* KahootWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = ADD5D6552527A4180076CE58 /* KahootWidget.intentdefinition */; };
 		ADD5D65D2527A41A0076CE58 /* KahootWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = ADD5D64C2527A4180076CE58 /* KahootWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		ADFF0A0E252D708400D983AC /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADFF0A0D252D708400D983AC /* Montserrat-Bold.ttf */; };
+		ADFF0A12252DED2300D983AC /* DiscoverGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF0A11252DED2300D983AC /* DiscoverGroup.swift */; };
+		ADFF0A16252DEDC600D983AC /* MediumWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADFF0A15252DEDC600D983AC /* MediumWidgetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AD32B189252E1846008E8D29 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		AD32B18D252E4406008E8D29 /* SmallWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallWidgetView.swift; sourceTree = "<group>"; };
 		ADD5D6352527A3D50076CE58 /* Kahoot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kahoot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADD5D6382527A3D50076CE58 /* KahootApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KahootApp.swift; sourceTree = "<group>"; };
 		ADD5D63A2527A3D50076CE58 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,6 +66,8 @@
 		ADD5D6562527A41A0076CE58 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ADD5D6582527A41A0076CE58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ADFF0A0D252D708400D983AC /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		ADFF0A11252DED2300D983AC /* DiscoverGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverGroup.swift; sourceTree = "<group>"; };
+		ADFF0A15252DEDC600D983AC /* MediumWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumWidgetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +146,10 @@
 				ADD5D6562527A41A0076CE58 /* Assets.xcassets */,
 				ADFF0A0D252D708400D983AC /* Montserrat-Bold.ttf */,
 				ADD5D6582527A41A0076CE58 /* Info.plist */,
+				ADFF0A11252DED2300D983AC /* DiscoverGroup.swift */,
+				ADFF0A15252DEDC600D983AC /* MediumWidgetView.swift */,
+				AD32B189252E1846008E8D29 /* View+Extensions.swift */,
+				AD32B18D252E4406008E8D29 /* SmallWidgetView.swift */,
 			);
 			path = KahootWidget;
 			sourceTree = "<group>";
@@ -253,7 +265,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADFF0A12252DED2300D983AC /* DiscoverGroup.swift in Sources */,
+				ADFF0A16252DEDC600D983AC /* MediumWidgetView.swift in Sources */,
 				ADD5D6592527A41A0076CE58 /* KahootWidget.intentdefinition in Sources */,
+				AD32B18A252E1846008E8D29 /* View+Extensions.swift in Sources */,
+				AD32B18E252E4406008E8D29 /* SmallWidgetView.swift in Sources */,
 				ADD5D6542527A4180076CE58 /* KahootWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

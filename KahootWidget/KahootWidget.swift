@@ -75,7 +75,7 @@ struct KahootWidgetEntryView : View {
                     .bold()
                     .lineLimit(2)
             }.padding(EdgeInsets(top: 4, leading: 16, bottom: 16, trailing: 16))
-        }.background(Color("Background"))
+        }.background(Color("SmallWidgetBackground"))
     }
 }
 

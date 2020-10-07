@@ -10,72 +10,70 @@ import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent())
+    func placeholder(in context: Context) -> WidgetTimelineEntry {
+        // The placeholder will show while data is loading, so the text will be redacted. That means we don’t have to provide any meaningful data.
+        let discoverGroup = DiscoverGroup(cardTitle: "------------", coverImage: Image("DummyImage"), creatorAvatarImage: nil, creatorUsername: "-------", groupTitle: "----------", numberOfQuestions: 10)
+    
+        return WidgetTimelineEntry(date: Date(), configuration: ConfigurationIntent(), discoverGroup: discoverGroup)
+    
+        // original last line.
+        //WidgetTimelineEntry(date: Date(), configuration: ConfigurationIntent())
     }
 
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration)
+    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (WidgetTimelineEntry) -> ()) {
+        // This function needs to return a timeline object that will be displayed in the widget gallery, so here we should provide valid dummy data.
+        let discoverGroup = DiscoverGroup(cardTitle: "World Architecture", coverImage: Image("DummyImage"), creatorAvatarImage: nil, creatorUsername: "Frank B.", groupTitle: "TOP PICKS", numberOfQuestions: 6)
+        
+        // original code.
+        //let entry = WidgetTimelineEntry(date: Date(), configuration: configuration)
+        //completion(entry)
+        
+        let entry = WidgetTimelineEntry(date: Date(), configuration: configuration, discoverGroup: discoverGroup)
         completion(entry)
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
+        // Needs to return an array of timeline events. For this exercise, let’s return just one element that will refresh after an hour.
+        let discoverGroup = DiscoverGroup(cardTitle: "World Architecture", coverImage: Image("DummyImage"), creatorAvatarImage: nil, creatorUsername: "Frank B.", groupTitle: "TOP PICKS", numberOfQuestions: 6)
+        
+        let entry = WidgetTimelineEntry(date: Date(), configuration: ConfigurationIntent(), discoverGroup: discoverGroup)
+        let date = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
+        let timeline = Timeline(entries: [entry], policy: TimelineReloadPolicy.after(date))
+        
+        //var entries: [WidgetTimelineEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
-            entries.append(entry)
-        }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+//        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+//        let currentDate = Date()
+//        for hourOffset in 0 ..< 5 {
+//            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+//            let entry = WidgetTimelineEntry(date: entryDate, configuration: configuration)
+//            entries.append(entry)
+//        }
+//
+//        let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct WidgetTimelineEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
+    let discoverGroup: DiscoverGroup
 }
 
 struct KahootWidgetEntryView : View {
+    @Environment(\.widgetFamily) private var widgetFamily
     var entry: Provider.Entry
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            GeometryReader { geometryProxy in
-                Image("DummyImage")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: geometryProxy.size.width, height: geometryProxy.size.height)
-                    .clipped()
-                    .overlay(
-                        Text("6 Qs")
-                            .font(.custom("Montserrat", size: 12, relativeTo: .title))
-                            .bold()
-                            .foregroundColor(.white)
-                            .padding(4)
-                            .background(Color("NumberOfQsBackground"))
-                            .cornerRadius(4)
-                            .padding(8)
-                        , alignment: .bottomTrailing
-                    )
-            }
-            VStack(alignment: .leading) {
-                Text("TOP PICKS")
-                    .font(.custom("Montserrat", size: 11, relativeTo: .title))
-                    .foregroundColor(Color("Gray4"))
-                    .bold()
-                    .lineLimit(1)
-                Text("World architecture")
-                    .font(.custom("Montserrat", size: 12, relativeTo: .body))
-                    .foregroundColor(Color("Gray5"))
-                    .bold()
-                    .lineLimit(2)
-            }.padding(EdgeInsets(top: 4, leading: 16, bottom: 16, trailing: 16))
-        }.background(Color("SmallWidgetBackground"))
+        switch widgetFamily {
+        case .systemSmall:
+            SmallWidgetView(discoverGroup: entry.discoverGroup)
+        case .systemMedium:
+            MediumWidgetView(discoverGroup: entry.discoverGroup)
+        @unknown default:
+            fatalError()
+        }
     }
 }
 
@@ -96,7 +94,7 @@ struct KahootWidget_Previews: PreviewProvider {
     static var previews: some View {
         
         ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
-            KahootWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+            KahootWidgetEntryView(entry: WidgetTimelineEntry(date: Date(), configuration: ConfigurationIntent()))
                         .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .environment(\.colorScheme, colorScheme)
         }

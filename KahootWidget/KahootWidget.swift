@@ -14,7 +14,7 @@ struct Provider: IntentTimelineProvider {
         // The placeholder will show while data is loading, so the text will be redacted. That means we don’t have to provide any meaningful data.
         let discoverGroup = DiscoverGroup(cardTitle: "------------", coverImage: Image("DummyImage"), creatorAvatarImage: nil, creatorUsername: "-------", groupTitle: "----------", numberOfQuestions: 10)
     
-        return WidgetTimelineEntry(date: Date(), configuration: ConfigurationIntent(), discoverGroup: discoverGroup)
+        return WidgetTimelineEntry(date: Date(), discoverGroup: discoverGroup)
     
         // original last line.
         //WidgetTimelineEntry(date: Date(), configuration: ConfigurationIntent())
@@ -28,7 +28,7 @@ struct Provider: IntentTimelineProvider {
         //let entry = WidgetTimelineEntry(date: Date(), configuration: configuration)
         //completion(entry)
         
-        let entry = WidgetTimelineEntry(date: Date(), configuration: configuration, discoverGroup: discoverGroup)
+        let entry = WidgetTimelineEntry(date: Date(), discoverGroup: discoverGroup)
         completion(entry)
     }
 
@@ -36,7 +36,7 @@ struct Provider: IntentTimelineProvider {
         // Needs to return an array of timeline events. For this exercise, let’s return just one element that will refresh after an hour.
         let discoverGroup = DiscoverGroup(cardTitle: "World Architecture", coverImage: Image("DummyImage"), creatorAvatarImage: nil, creatorUsername: "Frank B.", groupTitle: "TOP PICKS", numberOfQuestions: 6)
         
-        let entry = WidgetTimelineEntry(date: Date(), configuration: ConfigurationIntent(), discoverGroup: discoverGroup)
+        let entry = WidgetTimelineEntry(date: Date(), discoverGroup: discoverGroup)
         let date = Calendar.current.date(byAdding: .hour, value: 1, to: Date())!
         let timeline = Timeline(entries: [entry], policy: TimelineReloadPolicy.after(date))
         
@@ -57,7 +57,7 @@ struct Provider: IntentTimelineProvider {
 
 struct WidgetTimelineEntry: TimelineEntry {
     let date: Date
-    let configuration: ConfigurationIntent
+    //let configuration: ConfigurationIntent
     let discoverGroup: DiscoverGroup
 }
 
@@ -93,9 +93,11 @@ struct KahootWidget: Widget {
 struct KahootWidget_Previews: PreviewProvider {
     static var previews: some View {
         
+        let discoverGroup = DiscoverGroup(cardTitle: "World Architecture", coverImage: Image("DummyImage"), creatorAvatarImage: nil, creatorUsername: "Frank B.", groupTitle: "Top Picks", numberOfQuestions: 6)
+        
         ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
-            KahootWidgetEntryView(entry: WidgetTimelineEntry(date: Date(), configuration: ConfigurationIntent()))
-                        .previewContext(WidgetPreviewContext(family: .systemSmall))
+            KahootWidgetEntryView(entry: WidgetTimelineEntry(date: Date(), discoverGroup: discoverGroup))
+                        .previewContext(WidgetPreviewContext(family: .systemMedium))
                 .environment(\.colorScheme, colorScheme)
         }
         

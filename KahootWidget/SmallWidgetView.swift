@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import WidgetKit
 
 struct SmallWidgetView: View {
     
@@ -42,6 +43,13 @@ struct SmallWidgetView: View {
 
 struct SmallWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        SmallWidgetView()
+        
+        let discoverGroup = DiscoverGroup(cardTitle: "World Architecture", coverImage: Image("DummyImage"), creatorAvatarImage: nil, creatorUsername: "Frank B.", groupTitle: "Top Picks", numberOfQuestions: 6)
+        
+        ForEach(ColorScheme.allCases, id: \.self) { colorScheme in
+            SmallWidgetView(discoverGroup: discoverGroup)
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .environment(\.colorScheme, colorScheme)
+        }
     }
 }

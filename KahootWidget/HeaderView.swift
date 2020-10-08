@@ -14,6 +14,7 @@ struct HeaderView: View {
     var body: some View {
         HStack(spacing: 5) {
             Image("DiscoverGroupIcon")
+                .unredacted()
             Text(self.title)
                 .font(.custom("Montserrat", size: 11, relativeTo: .headline))
                 .bold()
@@ -23,6 +24,7 @@ struct HeaderView: View {
             Spacer()
             
             Image("K!Logo")
+                .unredacted()
         }
     }
 }

@@ -63,6 +63,7 @@ struct MediumWidgetView_Previews: PreviewProvider {
             MediumWidgetView(discoverGroup: discoverGroup)
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
                 .environment(\.colorScheme, colorScheme)
+                .redacted(reason: /*@START_MENU_TOKEN@*/.placeholder/*@END_MENU_TOKEN@*/)
         }
     }
 }

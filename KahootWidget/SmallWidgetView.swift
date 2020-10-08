@@ -50,6 +50,7 @@ struct SmallWidgetView_Previews: PreviewProvider {
             SmallWidgetView(discoverGroup: discoverGroup)
             .previewContext(WidgetPreviewContext(family: .systemSmall))
                 .environment(\.colorScheme, colorScheme)
+                .redacted(reason: /*@START_MENU_TOKEN@*/.placeholder/*@END_MENU_TOKEN@*/)
         }
     }
 }

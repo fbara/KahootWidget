@@ -41,6 +41,7 @@ struct LargeWidgetView: View {
                                     .resizable()
                             } else {
                                 Image("CreatorAvatarMissing")
+                                    .unredacted()
                             }
                         }
                         .frame(width: 24, height: 24)
@@ -59,6 +60,7 @@ struct LargeWidgetView: View {
             .cornerRadius(4)
                 
             ButtonRowView()
+                .unredacted()
         }
         .padding()
         .background(Color("MediumAndLargeWidgetBackground"))
@@ -74,6 +76,7 @@ struct LargeWidgetView_Previews: PreviewProvider {
             .previewContext(WidgetPreviewContext(family: .systemLarge))
                 .environment(\.colorScheme, colorScheme)
                 .previewDisplayName("\(colorScheme)")
+                .redacted(reason: /*@START_MENU_TOKEN@*/.placeholder/*@END_MENU_TOKEN@*/)
         }
     }
 }
